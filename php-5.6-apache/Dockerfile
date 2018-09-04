@@ -38,7 +38,7 @@ ENV APACHE_LOCK_DIR /var/lock/apache2
 RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 RUN a2enmod rewrite
 
-RUN chown -R www-data /var/www/html/cakephp/app/tmp/
 #RUN composer install
 
 CMD ["apache2", "-D", "FOREGROUND"]
+RUN chown -R www-data /var/www/html/cakephp/app/tmp/
