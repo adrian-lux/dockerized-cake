@@ -41,4 +41,5 @@ RUN a2enmod rewrite
 #RUN composer install
 
 CMD ["apache2", "-D", "FOREGROUND"]
-RUN /bin/bash chown -R www-data /var/www/html/cakephp/app/tmp
+RUN mkdir /var/www/html/cakephp/app/tmp
+RUN chown -R www-data /var/www/html/cakephp/app/tmp
