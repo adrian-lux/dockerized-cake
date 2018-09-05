@@ -30,8 +30,8 @@ services:
       MYSQL_USER: 'root'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - ./sql/data.sql:/docker-entrypoint-initdb.d/data.sql
       - mysql-data:/var/lib/mysql
+      - ./sql/data.sql:/docker-entrypoint-initdb.d/data.sql
 volumes:
   mysql-data:
     driver: local
