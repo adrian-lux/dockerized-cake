@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:7.1-apache
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -24,9 +24,9 @@ ENV COMPOSER_HOME /root/composer
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-ADD ./php-5.6-apache/php.ini /usr/local/etc/php/php.ini
+ADD ./php-apache/php.ini /usr/local/etc/php/php.ini
 
-ADD ./php-5.6-apache/default.conf /etc/apache2/sites-available/000-default.conf
+ADD ./php-apache/default.conf /etc/apache2/sites-available/000-default.conf
 
 COPY cake /var/www/html
 

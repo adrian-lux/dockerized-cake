@@ -3,7 +3,7 @@ services:
   moos-app:
     build:
         context: ./
-        dockerfile: ./php-5.6-apache/Dockerfile
+        dockerfile: ./php-apache/Dockerfile
     container_name: moos-app
     working_dir: /var/www/html/cakephp
     expose:
