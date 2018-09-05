@@ -13,20 +13,21 @@ services:
     environment:
       PHP_XDEBUG_ENABLED: 1 # Set 1 to enable.
       XDEBUG_CONFIG: remote_host=10.254.254.254
+      COMPOSE_PROJECT_NAME: "${port}"
     tty: true
   moos.local.dev:
-    image: 'mysql:5.5'
-    hostname: 'moos.local.dev'
+    build:
+        context: ./sql/
+    hostname: 'moos.local.dev${port}'
     container_name: 'moos.local.dev${port}'
     working_dir: /
-    expose: 
-      - "3306"
     command: mysqld --character-set-server=utf8
     environment:
-      MYSQL_HOST: 'moos.local.dev'
+      MYSQL_HOST: 'moos.local.dev${port}'
       MYSQL_DATABASE: 'moos'
       MYSQL_USER: 'root'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      COMPOSE_PROJECT_NAME: "${port}"
     volumes:
       - mysql-data:/var/lib/mysql
       - ./sql/data.sql:/docker-entrypoint-initdb.d/data.sql
