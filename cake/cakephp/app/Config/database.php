@@ -69,7 +69,7 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'moos.local.dev:3306',
+		'host' => 'moos.local.dev',
 		'login' => 'root',
 		'password' => '',
 		'database' => 'moos',

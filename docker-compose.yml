@@ -4,12 +4,10 @@ services:
     build:
         context: ./
         dockerfile: ./php-apache/Dockerfile
-    container_name: moos-app
+    container_name: "moos-app${port}"
     working_dir: /var/www/html/cakephp
-    expose:
-      - "9000"
     ports:
-      - '80:80'
+      - '${port}:80'
     links:
       - moos.local.dev
     environment:
@@ -19,10 +17,10 @@ services:
   moos.local.dev:
     image: 'mysql:5.5'
     hostname: 'moos.local.dev'
-    container_name: 'moos.local.dev'
+    container_name: 'moos.local.dev${port}'
     working_dir: /
-    ports:
-      - "3306:3306"
+    expose: 
+      - "3306"
     command: mysqld --character-set-server=utf8
     environment:
       MYSQL_HOST: 'moos.local.dev'
