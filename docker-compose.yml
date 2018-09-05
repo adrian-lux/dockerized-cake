@@ -20,6 +20,7 @@ services:
     image: 'mysql:5.5'
     hostname: 'moos.local.dev'
     container_name: 'moos.local.dev'
+    working_dir: /
     ports:
       - "3306:3306"
     command: mysqld --character-set-server=utf8
@@ -29,7 +30,7 @@ services:
       MYSQL_USER: 'root'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - ./sql/data.sql:docker-entrypoint-initdb.d
+      - ./sql/data.sql:/docker-entrypoint-initdb.d/data.sql
       - mysql-data:/var/lib/mysql
 volumes:
   mysql-data:
