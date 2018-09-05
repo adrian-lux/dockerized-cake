@@ -1,12 +1,7 @@
 pipeline {
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-
-  }
+  agent any
   stages {
-    stage('') {
+    stage('error') {
       steps {
         git(url: 'https://github.com/adrian-lux/dockerized-cake.git', branch: 'master')
       }
