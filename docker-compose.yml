@@ -1,15 +1,15 @@
 version: '2'
 services:
   moos-app:
-    build: ./php-5.6-apache
+    build:
+        context: ./
+        dockerfile: ./php-5.6-apache/Dockerfile
     container_name: moos-app
     working_dir: /var/www/html/cakephp
     expose:
       - "9000"
     ports:
       - '80:80'
-    volumes:
-      - ./cake:/var/www/html/
     links:
       - moos.local.dev
     environment:

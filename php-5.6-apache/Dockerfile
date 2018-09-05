@@ -24,9 +24,11 @@ ENV COMPOSER_HOME /root/composer
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-ADD ./php.ini /usr/local/etc/php/php.ini
+ADD ./php-5.6-apache/php.ini /usr/local/etc/php/php.ini
 
-ADD ./default.conf /etc/apache2/sites-available/000-default.conf
+ADD ./php-5.6-apache/default.conf /etc/apache2/sites-available/000-default.conf
+
+COPY cake /var/www/html
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP root
@@ -41,5 +43,5 @@ RUN a2enmod rewrite
 #RUN composer install
 
 CMD ["apache2", "-D", "FOREGROUND"]
-RUN mkdir /var/www/html/cakephp/app/tmp
+
 RUN chown -R www-data /var/www/html/cakephp/app/tmp
