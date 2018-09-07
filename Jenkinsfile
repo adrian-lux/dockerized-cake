@@ -1,7 +1,7 @@
 #!groovy
 def application, git, environment, artifactory, sonar
 
-node {
+node (127.0.0.1){
    agent none
 
 
