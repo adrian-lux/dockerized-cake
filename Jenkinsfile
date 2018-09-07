@@ -2,7 +2,7 @@
 def application, git, environment, artifactory, sonar
 
 node {
-   agent { label 'cf_slave' }
+   agent none
 
 
    stages {
