@@ -4,7 +4,7 @@ before_script:
 
 build_image:
   tags:
-    - docker
+    - my-docker-runner
   script:
     - docker-compose build
     - docker-compose up -d
