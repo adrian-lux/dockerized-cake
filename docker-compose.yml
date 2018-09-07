@@ -7,7 +7,7 @@ services:
     container_name: "moos-app${port}"
     working_dir: /var/www/html/cakephp
     ports:
-      - '${port}:80'
+      - '80:80'
     links:
       - moos.local.dev
     environment:
