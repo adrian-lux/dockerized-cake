@@ -21,7 +21,9 @@ pipeline {
          }
       }
       stage ("deploy"){
+         steps{
           sh "docker-compose -p master up -d"
+         }
       }
 
    }
