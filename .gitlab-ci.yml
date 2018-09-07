@@ -1,12 +1,6 @@
-image: docker-compose:lastest
-
-variables:
-  DOCKER_DRIVER: overlay
-
-services:
-- docker:dind
-
-build_image:
-  script:
-    - docker-compose build
-    - docker-compose up -d
+acceptance_testing:
+  stage: test
+  before_script:
+    - docker-compose -p $CI_JOB_ID up -d
+  after_script:
+    - docker-compose -p $CI_JOB_ID down -v --remove-orphans || true
