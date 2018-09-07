@@ -1,21 +1,48 @@
+#!groovy
+def application, git, environment, artifactory, sonar
+
 pipeline {
-    agent any
+   agent { label 'cf_slave' }
 
-    stage('Clone repository') {
-        checkout scm
-    }
 
-    stage('Build containers') {
-        sh 'docker-compose -p master down'
-        sh 'echo "port=80" > .env'
-        sh 'docker-compose -p master build'
-    }
+   stages {
+      stage ("Checkout SCM") {
+         steps {
+            checkout scm
 
-    stage ('Test image') {
-        sh 'echo "Test passed"'
-    }
+         }
+      }
 
-    stage ('Run containers') {
-        sh 'docker-compose -p master up -d'
-    }
+      stage ("build") {
+         steps {
+            sh "docker-compose -p master down"
+            sh "echo 'port=80' > .env"
+            sh "docker-compose -p master build"
+         }
+      }
+      stage ("deploy"){
+          sh "docker-compose -p master up -d"
+      }
+
+   }
+
+   post {
+      // always {
+
+      //  }
+      success {
+         sh "echo 'Pipeline reached the finish line!'"
+
+      }
+      failure {
+         sh "echo 'Pipeline failed'"
+         // Notify in Slack
+         //Clean the execution workspace
+         //deleteDir()
+      }
+      unstable {
+         sh "echo 'Pipeline unstable :-('"
+      }
+      
+   }
 }
