@@ -1,7 +1,7 @@
 #!groovy
 def application, git, environment, artifactory, sonar
 
-pipeline {
+node {
    agent { label 'cf_slave' }
 
 
