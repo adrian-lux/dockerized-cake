@@ -6,5 +6,6 @@ build_image:
   tags:
     - cakephp
   script:
+    - whoami
     - docker-compose build
     - docker-compose up -d
