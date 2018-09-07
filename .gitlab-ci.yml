@@ -4,7 +4,7 @@ before_script:
 
 build_image:
   tags:
-    - my-docker-runner
+    - cakephp
   script:
     - docker-compose build
     - docker-compose up -d
