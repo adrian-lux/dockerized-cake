@@ -1,12 +1,10 @@
-image: docker-compose:lastest
+before_script:
+  - docker info
 
-variables:
-  DOCKER_DRIVER: overlay
-
-services:
-- docker:dind
 
 build_image:
+  tags:
+    - docker
   script:
     - docker-compose build
     - docker-compose up -d
