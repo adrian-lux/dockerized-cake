@@ -7,7 +7,7 @@ services:
     container_name: "moos-app${port}"
     working_dir: /var/www/html/cakephp
     ports:
-      - '80:80'
+      - '${port}:80'
     links:
       - moos.local.dev
     environment:
@@ -28,7 +28,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./sql/data.sql:/docker-entrypoint-initdb.d/data.sql
+      - ./sql/:/docker-entrypoint-initdb.d/data.sql
 volumes:
   mysql-data:
     driver: local
